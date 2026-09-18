@@ -44,3 +44,4 @@ coding!
 - Jose Cruz #5: [GitHub](https://github.com/cruz3196) / [LinkedIn](https://www.linkedin.com/in/jose-cruz-6056322b3)
 - Matthew Neie (Developer): [GitHub](https://github.com/MatthewNeie) / [LinkedIn](https://www.linkedin.com/in/matthew-neie)
 - Nnaemeka Noble Nana (Developer): [GitHub](https://github.com/Noble-Nana7) / [LinkedIn](https://www.linkedin.com/in/n-noble)
+- Ling Dong (UX Designer): [Github](https://github.com/Luna4423-arch) / [LikedinIn](https://www.linkedin.com/in/ling-dong-801b131aa/)
