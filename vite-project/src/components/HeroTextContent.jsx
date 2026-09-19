@@ -1,5 +1,6 @@
 import React from 'react';
 import { HERO_CONTENT } from '../data/heroData';
+import { Link } from 'react-router-dom';
 
 export default function HeroTextContent({ onSignUp, onLoginGuest }) {
   return (
@@ -18,18 +19,18 @@ export default function HeroTextContent({ onSignUp, onLoginGuest }) {
       </p>
 
       <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4 w-full">
-        <button 
+        <Link to="/signup"
           onClick={onSignUp}
           className="w-full sm:w-auto bg-[#1F1F1F] hover:bg-black text-white font-medium px-8 py-3 rounded-full transition-colors duration-200 shadow-md cursor-pointer"
         >
           {HERO_CONTENT.primaryAction}
-        </button>
-        <button 
+        </Link>
+        <Link to="/learning-path" 
           onClick={onLoginGuest}
           className="w-full sm:w-auto text-gray-700 hover:text-black font-medium px-6 py-3 transition-colors duration-200 cursor-pointer"
         >
           {HERO_CONTENT.secondaryAction}
-        </button>
+        </Link>
       </div>
     </div>
   );
