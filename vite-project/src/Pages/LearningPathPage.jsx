@@ -9,7 +9,7 @@ const LearningPathPage = () => {
     <>
       <Link to="/">Home</Link>
       <form action="">
-        <div className="container lg:w-305 mx-auto px-4 py-8 mt-32">
+        <div className="container lg:w-305 mx-auto px-4 py-8 mt-32 mb-32">
           <h1 className="text-4xl font-bold pb-2">Lets map your path</h1>
           <p>
             A few quick questions so we can build a plan that actually fits you.
