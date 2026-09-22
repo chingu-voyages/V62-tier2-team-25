@@ -43,18 +43,16 @@ const LearningPathPage = () => {
                 Select your path
               </option>
               <option value="scrum-master">Scrum Master</option>
-              <option value="frontend-developer">Frontend Developer</option>
-              <option value="backend-developer">Backend Developer</option>
-              <option value="fullstack-developer">Fullstack Developer</option>
-              <option value="devops-engineer">Devops Engineer</option>
-              <option value="software-engineer">Software Engineer</option>
+              <option value="backend-developer">Software Developer</option>
+              <option value="fullstack-developer">Product Owner</option>
+              <option value="devops-engineer">Ux Designer</option>
             </select>
           </div>
 
           {/* skill level  */}
           <div>
             <p className="text-lg">
-              Skill level <span className="text-red-500">*</span>
+              Skill level
             </p>
             <div className="flex gap-4 mt-4 text-lg">
               <SkillGroup
@@ -62,7 +60,7 @@ const LearningPathPage = () => {
                 onChange={(e) => setLevel(e.target.value)}
               >
                 <SkillLevel value="beginner">Beginner</SkillLevel>
-                <SkillLevel value="intermediate">Intermediate</SkillLevel>
+                <SkillLevel value="intermeit diate">Intermediate</SkillLevel>
                 <SkillLevel value="advanced">Advanced</SkillLevel>
               </SkillGroup>
             </div>
