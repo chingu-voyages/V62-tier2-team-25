@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { Home, Eye, EyeOff, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import leafLogo from "../assets/leaf.png";
 
-// Shadcn UI Components
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -62,9 +61,21 @@ const LoginPage = () => {
     );
 
   return (
-    <div className="flex w-full justify-center px-4 py-16 sm:py-24">
-      <div className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-900/5 sm:p-10">
-        {/* Brand */}
+    <div className="w-full">
+
+      <div className="max-w-7xl mx-auto px-4 pt-6">
+        <Link 
+          to="/" 
+          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl shadow-sm hover:bg-gray-50 transition-all"
+        >
+          <Home className="w-4 h-4 text-gray-500" />
+          Home
+        </Link>
+      </div>
+
+      <div className="flex w-full justify-center px-4 py-16 sm:py-24">
+        <div className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-900/5 sm:p-10">
+       
         <div className="mb-8 flex items-center justify-center gap-2">
           <img
             src={leafLogo}
@@ -184,6 +195,7 @@ const LoginPage = () => {
         </p>
       </div>
     </div>
+  </div>
   );
 };
 
