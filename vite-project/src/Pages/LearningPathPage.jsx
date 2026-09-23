@@ -7,7 +7,18 @@ const LearningPathPage = () => {
   const [level, setLevel] = useState("");
   return (
     <>
-      <Link to="/">Home</Link>
+      <div className="max-w-7xl mx-auto px-4 pt-6">
+        <Link 
+          to="/" 
+          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl shadow-sm hover:bg-gray-50 transition-all"
+        >
+          <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          Home
+        </Link>
+      </div>
+
       <form action="">
         <div className="container lg:w-305 mx-auto px-4 py-8 mt-32 mb-32">
           <h1 className="text-4xl font-bold pb-2">Lets map your path</h1>
@@ -43,18 +54,16 @@ const LearningPathPage = () => {
                 Select your path
               </option>
               <option value="scrum-master">Scrum Master</option>
-              <option value="frontend-developer">Frontend Developer</option>
-              <option value="backend-developer">Backend Developer</option>
-              <option value="fullstack-developer">Fullstack Developer</option>
-              <option value="devops-engineer">Devops Engineer</option>
-              <option value="software-engineer">Software Engineer</option>
+              <option value="backend-developer">Software Developer</option>
+              <option value="fullstack-developer">Product Owner</option>
+              <option value="devops-engineer">Ux Designer</option>
             </select>
           </div>
 
           {/* skill level  */}
           <div>
             <p className="text-lg">
-              Skill level <span className="text-red-500">*</span>
+              Skill level
             </p>
             <div className="flex gap-4 mt-4 text-lg">
               <SkillGroup
@@ -62,7 +71,7 @@ const LearningPathPage = () => {
                 onChange={(e) => setLevel(e.target.value)}
               >
                 <SkillLevel value="beginner">Beginner</SkillLevel>
-                <SkillLevel value="intermediate">Intermediate</SkillLevel>
+                <SkillLevel value="intermeit diate">Intermediate</SkillLevel>
                 <SkillLevel value="advanced">Advanced</SkillLevel>
               </SkillGroup>
             </div>

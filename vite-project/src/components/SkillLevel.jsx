@@ -5,8 +5,18 @@ const SkillContext = createContext()
 export default function SkillLevel ({children, ...props}) {
   const { value, onChange } = useContext(SkillContext)
 
+  const isSelected = value == props.value
+
+  const handleClick = (e) => {
+    if (isSelected) {
+      e.preventDefault()
+      onChange({ target: { value: "" } })
+    }
+  }
+
   return (
     <label
+      onClick={handleClick}
       className={`px-5 py-4 rounded-2xl cursor-pointer border-2  transition-all ${
         value == props.value
           ? "bg-black text-white"
