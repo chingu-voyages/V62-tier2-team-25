@@ -56,7 +56,7 @@ const LearningPathPage = () => {
               <option value="scrum-master">Scrum Master</option>
               <option value="backend-developer">Software Developer</option>
               <option value="fullstack-developer">Product Owner</option>
-              <option value="devops-engineer">Ux Designer</option>
+              <option value="devops-engineer">UX Designer</option>
             </select>
           </div>
 
