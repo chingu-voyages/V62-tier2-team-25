@@ -16,15 +16,17 @@ export default function SkillLevel ({children, ...props}) {
 
   return (
     <label
+     name="level"
       onClick={handleClick}
-      className={`px-5 py-4 rounded-2xl cursor-pointer border-2  transition-all ${
+      className={`px-5 py-4 rounded-2xl cursor-pointer border-2 hover:bg-black hover:text-white transition-all ${
         value == props.value
           ? "bg-black text-white"
-          : "bg-white text-black  border-gray-500"
+          : "bg-white text-black border-gray-500"
       }`}
     >
       <input
         type="radio"
+        name="level"
         className="hidden"
         checked={value == props.value}
         onChange={onChange}
