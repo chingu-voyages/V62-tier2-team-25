@@ -161,8 +161,8 @@ const LearningPathPage = () => {
               <option value="" disabled="disabled">
                 Select your path
               </option>
-              <option value="scrum-master">Scrum Master</option>
               <option value="backend-developer">Software Developer</option>
+              <option value="scrum-master">Scrum Master</option>
               <option value="fullstack-developer">Product Owner</option>
               <option value="devops-engineer">UX Designer</option>
             </select>
