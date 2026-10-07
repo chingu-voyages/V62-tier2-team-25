@@ -85,8 +85,8 @@ const LearningPathPage = () => {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto px-4 pt-6">
-        <Link
+      <div className="max-w-7xl mx-auto px-4 mb-18">
+        {/* <Link
           to="/"
           className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl shadow-sm hover:bg-gray-50 transition-all"
         >
@@ -104,9 +104,9 @@ const LearningPathPage = () => {
             />
           </svg>
           Home
-        </Link>
+        </Link> */}
 
-        <div className="w-full mx-auto px-4 py-8 mt-32 mb-18">
+        <div className="w-full mx-auto px-4 py-8 mt-12 mb-18">
           <h1 className="text-4xl font-bold pb-2">Lets map your path</h1>
           <p>
             A few quick questions so we can build a plan that actually fits you.

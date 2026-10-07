@@ -6,10 +6,12 @@ import LoginPage from "./Pages/LoginPage";
 import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
 import SignupPage from "./Pages/SignupPage";
 import Gemini from "./components/GeminiTest";
+import Header from "./layout/Header";
 
 function App() {
   return (
     <>
+    <Header />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/learning-path" element={<LearningPathPage />} />

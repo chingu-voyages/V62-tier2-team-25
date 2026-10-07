@@ -6,22 +6,24 @@ export default function Header() {
   return (
     <header className="w-full bg-slate-50 border-b border-slate-200 py-6 px-8 shadow-sm">
       <div className="w-[80vw] mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-        <div className="w-[80vw] flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img
-              src={leafLogo}
-              alt="DevTrajectory Leaf Logo"
-              className="w-7 h-7 object-contain"
-            />
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center">
-                <span className="text-black">Dev</span>
-                <span className="text-emerald-700">Trajectory</span>
-              </h1>
-              <p className="text-sm text-slate-400 mt-1">
-                AI-Powered Career & Learning Paths for Software Professionals
-              </p>
-            </div>
+        <div className="w-[80vw] flex items-center justify-between ">
+          <div className="  items-center justify-between ">
+            <Link to="/" className="flex cursor-pointer items-center gap-2">
+              <img
+                src={leafLogo}
+                alt="DevTrajectory Leaf Logo"
+                className="w-7 h-7 object-contain "
+              />
+              <div>
+                <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center">
+                  <span className="text-black">Dev</span>
+                  <span className="text-emerald-700">Trajectory</span>
+                </h1>
+              </div>
+            </Link>
+            <p className="text-sm text-slate-400 mt-1">
+              {/* AI-Powered Career & Learning Paths for Software Professionals */}
+            </p>
           </div>
 
           <div className="flex items-center text-white text-[20px]">
