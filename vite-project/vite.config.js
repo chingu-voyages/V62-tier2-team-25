@@ -15,16 +15,8 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
-  // configuring the proxy for API requests to the backend server
   server: {
-    port: 5177,
-    strictPort: true,
-    proxy: {
-      // any requesting starting with "api" will get sent to localhost:3001
-      "/api": {
-        target: "http://localhost:3001",
-        changeOrigin: true,
-      },
-    },
+    port: 5177,        
+    strictPort: true 
   },
 });
