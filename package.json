@@ -1,0 +1,20 @@
+{
+  "name": "DevTrajectory",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon vite-project/backend/server/src/server.js",
+    "build": "npm install && npm install --prefix vite-project/frontend && npm run build --prefix vite-project/frontend",
+    "start": "cross-env NODE_ENV=production node vite-project/backend/server/src/server.js"
+  },
+  "dependencies": {
+    "@google/genai": "^1.0.0",
+    "cors": "^2.8.5",
+    "cross-env": "^10.1.0",
+    "dotenv": "^16.0.0",
+    "express": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  }
+}
