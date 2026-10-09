@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
-// Shadcn UI Components
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -57,7 +57,6 @@ const handleSubmit = async (e) => {
     try {
       let data;
 
-      // Si estás probando localmente en tu máquina, simulamos la respuesta con token
       if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         data = { 
@@ -79,15 +78,12 @@ const handleSubmit = async (e) => {
         }
       }
 
-      // --- GUARDAR LA SESIÓN DE FORMA SEGURA EN EL LOCALSTORAGE ---
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("userName", data.user.name);
       localStorage.setItem("isAuthenticated", "true");
 
-      // Limpiar los valores del formulario
       setFormValues({ name: "", email: "", password: "", confirmPassword: "" });
 
-      // Redirigir al usuario al panel protegido
       setTimeout(() => {
         navigate("/learning-path");
       }, 1500);

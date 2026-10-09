@@ -8,7 +8,6 @@ const LearningPathPage = () => {
   const navigate = useNavigate();
   const context = useAppContext();
 
-  // Verificar si hay sesión activa para mostrar el botón de logout
   const isAuthenticated = Boolean(
     localStorage.getItem("authToken") || localStorage.getItem("isAuthenticated")
   );
@@ -97,7 +96,7 @@ const LearningPathPage = () => {
   return (
     <>
       <div className="max-w-7xl mx-auto px-4 pt-6">
-        {/* Contenedor superior */}
+        {/* Main container */}
         <div className="flex justify-between items-center">
           <Link
             to="/"
@@ -119,7 +118,7 @@ const LearningPathPage = () => {
             Home
           </Link>
 
-          {/* El botón de Log out solo aparece si hay sesión activa */}
+          {/* Logout button when an active session appears */}
           {isAuthenticated && (
             <button
               onClick={handleLogout}
@@ -130,7 +129,7 @@ const LearningPathPage = () => {
           )}
         </div>
 
-        {/* Título y descripción */}
+        {/* Title and description */}
         <div className="w-full mx-auto px-4 py-8 mt-32 mb-8">
           <h1 className="text-4xl font-bold pb-2">Lets map your path</h1>
           <p>
