@@ -50,7 +50,7 @@ CONSTRAINTS:
 - Prioritize skills that are directly relevant to the learner's career goal.
 - Do not overwhelm the learner with too many topics at once.
 - Explain why each stage is relevant to the career goal.
-- Add a short list of recommended starting resources for the learner.
+- Add a short list of recommended starting resources for the learner (3-5).
 
 OUTPUT:
 Return ONLY valid JSON in this exact shape:
@@ -72,9 +72,10 @@ Return ONLY valid JSON in this exact shape:
     }
   ],
   "recommendedResources": [
-    "freeCodeCamp — Responsive Web Design certification",
-    "The Odin Project — Foundations course",
-    "React's official docs — Learn React tutorial"
+    {
+      "title":
+      "url":
+    }
   ]
 }
 
@@ -93,19 +94,16 @@ IMPORTANT:
     try {
       const answer = await askGemini(prompt);
       setResponse(answer);
-      navigate("/path-results");
     } catch (error) {
       console.error(error);
       setResponse("Connection error.");
-      navigate("/path-results");
     } finally {
       setLoading(false);
+      navigate("/path-results");
     }
   }
 
-  useEffect(() => {
-    handleSubmit();
-  }, [questionnaire]);
+  useEffect(() => {}, [questionnaire]);
 
   return (
     <div className="flex flex-col items-center text-left justify-center">
