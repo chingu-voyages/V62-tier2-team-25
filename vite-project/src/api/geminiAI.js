@@ -1,7 +1,9 @@
 const API_BASE_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 
 export async function askGemini(prompt) {
-  const response = await fetch(`${API_BASE_URL}/api/chat`, {
+  const endpoint = `${API_BASE_URL}/api/chat` || "/api/chat";
+
+  const response = await fetch(endpoint, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
