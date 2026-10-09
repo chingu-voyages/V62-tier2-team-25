@@ -29,9 +29,10 @@ const LoginPage = () => {
     setErrors({});
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // 1. Usar el loginSchema correcto en lugar del de registro
     const validation = loginSchema.safeParse(formValues);
     if (!validation.success) {
       const fieldErrors = validation.error.flatten().fieldErrors;
@@ -46,10 +47,46 @@ const LoginPage = () => {
     setLoading(true);
 
     try {
-      console.log("User Creds:", validation.data);
-      setFormValues({ email: "", password: "" });
-    } catch {
-      setErrors({ form: { message: "An unexpected error occurred" } });
+      let data;
+
+      // Si estás probando localmente en tu máquina, simulamos la respuesta con token
+      if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const generatedName = validation.data.email.split("@")[0];
+        data = { 
+          token: "mock_local_login_token_" + Math.random().toString(36).substring(2),
+          user: { name: generatedName, email: validation.data.email }
+        };
+      } else {
+        // 2. Apuntar correctamente a la función serverless de LOGIN en Netlify
+        const response = await fetch('/.netlify/functions/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(validation.data),
+        });
+
+        data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Login failed");
+        }
+      }
+
+      // --- GUARDAR LA SESIÓN DE FORMA SEGURA EN EL LOCALSTORAGE ---
+      localStorage.setItem("authToken", data.token);
+      localStorage.setItem("userName", data.user.name);
+      localStorage.setItem("isAuthenticated", "true");
+
+      // Limpiar los valores del formulario
+     // setFormValues({ email: "", password: "" });
+
+      // Redirigir al usuario al panel protegido
+      setTimeout(() => {
+        navigate("/learning-path");
+      }, 1500);
+
+    } catch (err) {
+      setErrors({ form: { message: err.message || "Network error occurred" } });
     } finally {
       setLoading(false);
     }
@@ -69,10 +106,8 @@ const LoginPage = () => {
 
     setWelcomeMessage(`Welcome, ${tokenPayload.name}!`);
 
-    setTimeout(() => {
-      navigate("/learning-path");
-    }, 2000);
-  };
+    navigate("/learning-path");
+}
 
   const handleGoogleError = () => {
     console.error("Google Login Failed");

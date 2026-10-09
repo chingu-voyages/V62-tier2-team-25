@@ -151,7 +151,7 @@ const GeminiResponse = () => {
                   }
                   aria-pressed={isCompleted}
                   className={`absolute -left-[2.35rem] top-2 z-10 flex h-8 w-8 items-center justify-center rounded-full border-4 border-white text-sm font-bold text-white shadow-sm transition-all duration-300 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 ${
-                    isCompleted ? "bg-emerald-600" : "bg-[#1f7a65]"
+                    isCompleted ? "bg-emerald-600" : "bg-[black]"
                   }`}
                 >
                   {isCompleted ? "✓" : index + 1}
