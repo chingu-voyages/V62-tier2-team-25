@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState, useEffect } from "react";
 import { useAppContext } from "./../context/UserContext";
 
 // const parseGeminiJson = (rawResponse) => {
@@ -34,11 +34,31 @@ const fallbackResources = [
 
 const GeminiResponse = () => {
   const { response, loading } = useAppContext();
-  const [completedStages, setCompletedStages] = useState([]);
+  
+const [completedStages, setCompletedStages] = useState(() => {
+    const saved = sessionStorage.getItem("completedStages");
+    return saved ? JSON.parse(saved) : [];
+  });
 
-  // const data = useMemo(() => parseGeminiJson(response), [response]);
+  useEffect(() => {
+    sessionStorage.setItem("completedStages", JSON.stringify(completedStages));
+  }, [completedStages]);
 
-  const data = JSON.parse(response);
+  useEffect(() => {
+    if (response) {
+      sessionStorage.setItem("ai_path_response", typeof response === "string" ? response : JSON.stringify(response));
+    }
+  }, [response]);
+
+  let data = null;
+  try {
+    const rawData = response || sessionStorage.getItem("ai_path_response");
+    if (rawData) {
+      data = typeof rawData === "string" ? JSON.parse(rawData) : rawData;
+    }
+  } catch (error) {
+    console.error("Error parsing JSON response:", error);
+  }
 
   console.log(data);
 
@@ -94,7 +114,7 @@ const GeminiResponse = () => {
     );
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8 text-slate-900">
+    <div className="max-w-[1206px] mx-auto px-6 py-8 text-slate-900 font-sans">
       <div className="rounded-[18px] bg-[black] px-6 py-5 text-white shadow-xl">
         <p className="text-base font-medium text-slate-200">
           Your personalized path
@@ -133,6 +153,7 @@ const GeminiResponse = () => {
         </h2>
 
         <div className="relative ml-3 border-l-2 border-slate-300 pl-8">
+
           {stages.map((stage, index) => {
             const isCompleted = completedStages.includes(index);
 
@@ -150,16 +171,14 @@ const GeminiResponse = () => {
                       : `Mark ${stage.title} as complete`
                   }
                   aria-pressed={isCompleted}
-                  className={`absolute -left-[2.35rem] top-2 z-10 flex h-8 w-8 items-center justify-center rounded-full border-4 border-white text-sm font-bold text-white shadow-sm transition-all duration-300 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 ${
-                    isCompleted ? "bg-emerald-600" : "bg-[black]"
-                  }`}
+                  className={`absolute -left-[3.65rem] top-6 z-10 flex h-10 w-10 items-center justify-center rounded-full text-base font-bold text-white shadow-sm transition-all duration-300 hover:scale-105 focus-visible:outline-none ${isCompleted ? "bg-[#27665C]" : "bg-black"
+                    }`}
                 >
                   {isCompleted ? "✓" : index + 1}
                 </button>
                 <div
-                  className={`rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-500 ease-in-out ${
-                    isCompleted ? "opacity-40" : "opacity-100"
-                  }`}
+                  className={`rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-500 ease-in-out ${isCompleted ? "opacity-40" : "opacity-100"
+                    }`}
                 >
                   <div className="mb-3 text-sm text-slate-500">
                     {stage.weekLabel || `Week ${index + 1}`}
