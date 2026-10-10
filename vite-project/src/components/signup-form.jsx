@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
-// Shadcn UI Components
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -36,8 +36,7 @@ const SignupForm = () => {
     setFormValues((prev) => ({ ...prev, [name]: value }));
     setErrors({});
   };
-
-  const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
 
     const validation = formSchema.safeParse(formValues);
@@ -56,17 +55,46 @@ const SignupForm = () => {
     setLoading(true);
 
     try {
-      console.log("New account:", {
-        name: validation.data.name,
-        email: validation.data.email,
-      });
+      let data;
+
+      if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        data = { 
+          token: "mock_local_signup_token_" + Math.random().toString(36).substring(2),
+          user: { name: validation.data.name, email: validation.data.email }
+        };
+      } else {
+        // En producción (Netlify), ejecuta la función serverless real
+        const response = await fetch('/.netlify/functions/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(validation.data),
+        });
+
+        data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Signup failed");
+        }
+      }
+
+      localStorage.setItem("authToken", data.token);
+      localStorage.setItem("userName", data.user.name);
+      localStorage.setItem("isAuthenticated", "true");
+
       setFormValues({ name: "", email: "", password: "", confirmPassword: "" });
-    } catch {
-      setErrors({ form: { message: "An unexpected error occurred" } });
+
+      setTimeout(() => {
+        navigate("/learning-path");
+      }, 1500);
+
+    } catch (err) {
+      setErrors({ form: { message: err.message || "Network error occurred" } });
     } finally {
       setLoading(false);
     }
   };
+
   // Google Login Handlers
   const handleGoogleSuccess = (credentialResponse) => {
     console.log("Google Login Success:", credentialResponse);
