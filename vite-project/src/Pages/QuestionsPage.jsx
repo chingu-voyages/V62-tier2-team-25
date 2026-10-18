@@ -14,13 +14,9 @@ export const QuestionsPage = () => {
 
   const { careerGoal, questionnaire, setQuestionnaire } = useAppContext();
 
-  console.log(questionnaire);
-
   const roleQuestions = questions.filter(
     (question) => question.role === careerGoal,
   );
-
-  console.log(roleQuestions);
 
   const totalQuestions = roleQuestions.length;
 
@@ -70,7 +66,6 @@ export const QuestionsPage = () => {
     setQuestionnaire(questionnaireResults);
     setIsSubmitted(true);
     setFinalPayload(answers);
-    console.log(answers);
   };
 
   // const handleRestart = () => {

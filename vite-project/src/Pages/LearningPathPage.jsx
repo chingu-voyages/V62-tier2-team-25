@@ -85,7 +85,6 @@ const LearningPathPage = () => {
       setTimeCommitment(formData.time);
       setErrors({});
       setIsSubmitted(true);
-      console.log("Form submitted successfully:", formData);
 
       navigate("/questions");
     } catch (error) {

@@ -66,8 +66,6 @@ const GeminiResponse = () => {
     console.error("Error parsing JSON response:", error);
   }
 
-  console.log(data);
-
   const toggleStage = (index) => {
     setCompletedStages((prev) =>
       prev.includes(index)
