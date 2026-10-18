@@ -243,8 +243,6 @@ As the Voyage progressed, the team deliberately reduced scope where additional f
 
 **Custom Milestones & Path Editing (US-08)** was also cancelled and kept outside the final scope.
 
-**Progress Tracking (US-04)** remained completed in the delivered product scope, while the team still chose to keep the final release focused and avoid expanding related follow-on functionality late in the Voyage.
-
 For export functionality, the team retained the most useful and achievable experience: **Print / Save as PDF**, while additional Markdown export and social sharing concepts were not pursued.
 
 The final phase of the Voyage was intentionally focused on:
