@@ -83,7 +83,7 @@ export const QuestionsPage = () => {
   // SCREEN A: Success Screen
   if (isSubmitted) {
     return (
-      <div className="w-xs sm:w-md md:w-xl mx-auto mt-50 p-8 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
+      <div className="w-xs sm:w-md md:w-xl mx-auto mt-10 p-8 bg-white rounded-2xl shadow-xl border border-gray-100 text-center">
         <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
           ✓
         </div>
