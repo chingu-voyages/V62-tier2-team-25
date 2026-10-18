@@ -50,18 +50,22 @@ const LoginPage = () => {
       let data;
 
       // Si estás probando localmente en tu máquina, simulamos la respuesta con token
-      if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      if (
+        window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1"
+      ) {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         const generatedName = validation.data.email.split("@")[0];
-        data = { 
-          token: "mock_local_login_token_" + Math.random().toString(36).substring(2),
-          user: { name: generatedName, email: validation.data.email }
+        data = {
+          token:
+            "mock_local_login_token_" + Math.random().toString(36).substring(2),
+          user: { name: generatedName, email: validation.data.email },
         };
       } else {
         // 2. Apuntar correctamente a la función serverless de LOGIN en Netlify
-        const response = await fetch('/.netlify/functions/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        const response = await fetch("/.netlify/functions/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(validation.data),
         });
 
@@ -78,13 +82,12 @@ const LoginPage = () => {
       localStorage.setItem("isAuthenticated", "true");
 
       // Limpiar los valores del formulario
-     // setFormValues({ email: "", password: "" });
+      // setFormValues({ email: "", password: "" });
 
       // Redirigir al usuario al panel protegido
       setTimeout(() => {
         navigate("/learning-path");
       }, 1500);
-
     } catch (err) {
       setErrors({ form: { message: err.message || "Network error occurred" } });
     } finally {
@@ -94,8 +97,6 @@ const LoginPage = () => {
 
   // Google Login Handlers
   const handleGoogleSuccess = (credentialResponse) => {
-    console.log("Google Login Success:", credentialResponse);
-
     const tokenPayload = JSON.parse(
       atob(credentialResponse.credential.split(".")[1]),
     );
@@ -107,7 +108,7 @@ const LoginPage = () => {
     setWelcomeMessage(`Welcome, ${tokenPayload.name}!`);
 
     navigate("/learning-path");
-}
+  };
 
   const handleGoogleError = () => {
     console.error("Google Login Failed");
