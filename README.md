@@ -35,17 +35,14 @@ DevTrajectory guides the user from a career goal to a personalized learning jour
 
 Users provide their career goal, skill level, background, and available time so the experience can be tailored to their situation.
 
-<p align="center">
-  <img src="docs/images/devtrajectory-onboarding-form.png" alt="DevTrajectory onboarding form" width="900" />
-</p>
+<img width="1342" height="1189" alt="image" src="https://github.com/user-attachments/assets/a0d7b913-f990-47f3-8af7-d8cace71958e" />
+
 
 ### Personalized Learning Path
 
 After the assessment, Gemini generates a structured roadmap with stages, skills, recommended resources, and a clear timeline.
 
-<p align="center">
-  <img src="docs/images/devtrajectory-learning-path.png" alt="Generated DevTrajectory learning path" width="1000" />
-</p>
+<img width="860" height="1185" alt="image" src="https://github.com/user-attachments/assets/9d4837be-47e6-40fe-ba2b-41273135a22f" />
 
 <details>
 <summary><strong>See the complete product journey</strong></summary>
