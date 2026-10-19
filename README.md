@@ -482,6 +482,14 @@ Together, these artifacts document both the final product and the process used t
 
 ---
 
+=======
+## 📦 Final Project Artifacts
+
+- [Final Mural Workspace](docs/final/DevTrajectory_Mural_Final.pdf)
+- [Showcase Presentation](docs/final/DevTrajectory_Showcase_Presentation.pdf)
+
+These artifacts capture the final product-delivery process and the presentation used to showcase DevTrajectory at the end of Chingu Voyage 62.
+
 ## 🧪 Release Quality
 
 Before final submission, the team completed a dedicated release and QA phase covering:
