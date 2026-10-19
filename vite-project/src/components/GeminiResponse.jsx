@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAppContext } from "./../context/UserContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Gemini from "./GeminiPrompt";
 
 // const parseGeminiJson = (rawResponse) => {
@@ -36,6 +36,7 @@ const fallbackResources = [
 
 const GeminiResponse = () => {
   const { response, loading } = useAppContext();
+  const navigate = useNavigate();
 
   const [completedStages, setCompletedStages] = useState(() => {
     const saved = sessionStorage.getItem("completedStages");
@@ -64,8 +65,6 @@ const GeminiResponse = () => {
   } catch (error) {
     console.error("Error parsing JSON response:", error);
   }
-
-  console.log(data);
 
   const toggleStage = (index) => {
     setCompletedStages((prev) =>
@@ -115,6 +114,19 @@ const GeminiResponse = () => {
         acc + (Array.isArray(stage.skills) ? stage.skills.length : 0),
       0,
     );
+  const completedCount = stages.filter((_, index) =>
+    completedStages.includes(index),
+  ).length;
+
+  const progressPercentage =
+    stages.length > 0 ? Math.round((completedCount / stages.length) * 100) : 0;
+
+  const handleCreateNewPath = () => {
+    sessionStorage.removeItem("ai_path_response");
+    sessionStorage.removeItem("completedStages");
+
+    navigate("/learning-path");
+  };
 
   return (
     <div className="max-w-[1206px] mx-auto px-6 py-8 text-slate-900 font-sans">
@@ -172,6 +184,46 @@ const GeminiResponse = () => {
         </div>
       </div>
 
+      <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="mb-3 flex items-center justify-between gap-4">
+          <div>
+            <h2 className="text-lg font-bold text-slate-900">Your progress</h2>
+          </div>
+
+          <span className="text-xl font-bold text-[#27665C]">
+            {progressPercentage}%
+          </span>
+        </div>
+
+        {/* Progress bar */}
+        <div
+          className="h-3 w-full overflow-hidden rounded-full bg-slate-200"
+          role="progressbar"
+          aria-label="Roadmap completion"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={progressPercentage}
+        >
+          <div
+            className="h-full rounded-full bg-[#27665C] transition-all duration-500 ease-in-out"
+            style={{ width: `${progressPercentage}%` }}
+          />
+        </div>
+
+        {/* Completed stages count */}
+        <div className="mt-3 flex items-center justify-between text-sm">
+          <span className="text-slate-600">
+            {completedCount} of {stages.length} stages completed
+          </span>
+
+          <span className="font-medium text-[#27665C]">
+            {completedCount === stages.length && stages.length > 0
+              ? "Complete!"
+              : `${stages.length - completedCount} remaining`}
+          </span>
+        </div>
+      </div>
+
       <div className="mt-10">
         <h2 className="mb-6 text-4xl font-black tracking-tight text-slate-900">
           Your roadmap
@@ -203,7 +255,7 @@ const GeminiResponse = () => {
                 </button>
                 <div
                   className={`rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-500 ease-in-out ${
-                    isCompleted ? "opacity-40" : "opacity-100"
+                    isCompleted ? "opacity-20" : "opacity-100"
                   }`}
                 >
                   <div className="mb-3 text-sm text-slate-500">
@@ -250,13 +302,20 @@ const GeminiResponse = () => {
         </ul>
       </div>
 
-      <div className="mt-8 flex flex-wrap gap-4">
+      <div className="mt-8 flex flex-wrap justify-between gap-4">
         <button
           type="button"
           onClick={handleExportPDF}
-          className="no-print rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800"
+          className="no-print rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 hover:cursor-pointer"
         >
           Export as PDF
+        </button>
+        <button
+          type="button"
+          onClick={handleCreateNewPath}
+          className="no-print rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 hover:cursor-pointer"
+        >
+          Create New Path
         </button>
       </div>
     </div>

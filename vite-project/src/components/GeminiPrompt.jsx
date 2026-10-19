@@ -22,8 +22,6 @@ function Gemini() {
     .map((item) => `Question: ${item.question}\nAnswer: ${item.answer}`)
     .join("\n\n");
 
-  console.log(questionnaireText);
-
   const prompt = `
 TASK:
 Create a personalized learning path for the learner described below.
